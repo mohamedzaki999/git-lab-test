@@ -1,14 +1,16 @@
-name: CI Test
 
-on: [push]
+name: CI + Security
+
+on:
+  push:
 
 jobs:
-  test:
+  security:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Print message
-        run: echo "Hello CI/CD"
+      - name: Run Gitleaks (Secret Scan)
+        uses: gitleaks/gitleaks-action@v2
